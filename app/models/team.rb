@@ -1,13 +1,6 @@
 class Team < ApplicationRecord
   belongs_to :user
   has_many :talks
-<<<<<<< HEAD
-  has_many :channels
-  has_many :team_users
-  has_many :users, through: :team_users
-  validates_presence_of :slug, :user
-  validates :slug, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
-=======
   has_many :channels, dependent: :destroy
   has_many :team_users, dependent: :destroy
   has_many :users, through: :team_users
@@ -19,5 +12,4 @@ class Team < ApplicationRecord
   def general_channel
     self.channels << Channel.create(slug: 'general', user_id: self.user.id)
   end
->>>>>>> models
 end
